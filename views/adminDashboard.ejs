@@ -1,0 +1,15 @@
+<h1 class="mt-4">Dashboard</h1>
+<p class="lead mb-3">Welcome <%= user.name %></p>
+<a href="/auth/logout" class="btn btn-secondary">Logout</a>
+<p>Current Active sessions:</p>
+<% if (sessionKeys && sessionKeys.length > 0) { %>
+      <% sessionKeys.forEach(function(sessionID) { %>
+        <p>SessionID: <%= sessionID %></p>
+        <form action="/revoke/<%= sessionID %>" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger btn-sm">Revoke</button>
+          </form>
+      <% }); %>
+  <% } else { %>
+    <p>No active sessions found.</p>
+  <% } %>
+<p>UserID: <%= user.id %></p>

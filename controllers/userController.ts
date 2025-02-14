@@ -1,15 +1,20 @@
 import {userModel} from "../models/userModel";
 
 const getUserByEmailIdAndPassword = (email: string, password: string) => {
+  
   let user = userModel.findOne(email);
+  
   if (user) {
     if (isUserValid(user, password)) {
       return user;
+    } else {
+      throw new Error("Incorrect password");
     }
   }
   return null;
 };
-const getUserById = (id:any) => {
+
+const getUserById = (id: number) => {
   let user = userModel.findById(id);
   if (user) {
     return user;
@@ -17,7 +22,7 @@ const getUserById = (id:any) => {
   return null;
 };
 
-function isUserValid(user: any, password: string) {
+function isUserValid(user: Express.User, password: string) {
   return user.password === password;
 }
 

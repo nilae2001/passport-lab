@@ -3,8 +3,14 @@ import expressLayouts from "express-ejs-layouts";
 import session from "express-session";
 import path from "path";
 import passportMiddleware from './middleware/passportMiddleware';
+import dotenv from "dotenv";
+/// <reference path="./types.d.ts" />
 
-const port = process.env.port || 8000;
+
+
+dotenv.config();
+
+const port = process.env.PORT || 8000;
 
 const app = express();
 
